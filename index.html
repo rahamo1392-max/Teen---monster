@@ -32,7 +32,24 @@
 const SUPABASE_URL="https://vwawoyupncebmwhjxnve.supabase.co";
 const SUPABASE_ANON_KEY="sb_publishable_etk6om08ElELEj--2mlu5Q_mtsZ1nJN";
 let sb=null,user=null,profile=null,newsCache=[],remoteChat=false;
-if(window.supabase && SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("PASTE_") && !SUPABASE_ANON_KEY.includes("PASTE_")){sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY)}
+try {
+  if (!window.supabase) {
+    console.error("Supabase library did not load.");
+  } else if (!SUPABASE_URL.startsWith("https://") ||
+             !SUPABASE_ANON_KEY ||
+             SUPABASE_URL.includes("PASTE_") ||
+             SUPABASE_ANON_KEY.includes("PASTE_")) {
+    console.error("Supabase URL or public key is invalid.");
+  } else {
+    sb = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+    console.log("Supabase client created.");
+  }
+} catch (error) {
+  console.error("Supabase initialization failed:", error);
+}
 const $=id=>document.getElementById(id);
 const members=[["Namra","Vocalist"],["Member 02","Vocal / Rap"],["Member 03","Rapper"],["Member 04","Dancer"],["Member 05","Vocalist"],["Member 06","Dancer"],["Member 07","All-rounder"]];
 function renderMembers(){ $("memberGrid").innerHTML=members.map((m,i)=>`<article class="card"><div class="member-art">${["✦","♬","⚡","✧","♡","★","☾"][i]}</div><h3>${m[0]}</h3><span class="tag">${m[1]}</span><p class="muted">پروفایل عضو ${i+1} — قابل ویرایش در کد اولیه</p></article>`).join("")}
