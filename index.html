@@ -29,8 +29,8 @@
 <div id="authModal" class="hidden" style="position:fixed;inset:0;background:#05030beF;z-index:20;display:grid;place-items:center;padding:18px"><div class="panel" style="width:min(100%,420px)"><div class="row"><h2 style="flex:1">حساب کاربری</h2><button class="pill" id="closeAuth">✕</button></div><div class="notice">برای ورود و ثبت‌نام واقعی، ابتدا تنظیمات Supabase را طبق راهنما وارد کن.</div><form id="authForm" style="margin-top:14px"><label>ایمیل</label><input class="field" id="email" type="email" autocomplete="email" required><label>رمز عبور (حداقل ۶ نویسه)</label><input class="field" id="password" type="password" minlength="6" required autocomplete="current-password"><div class="row"><button class="btn" type="submit" id="signupBtn">ثبت‌نام</button><button class="btn secondary" type="button" id="loginBtn">ورود</button></div></form><p class="muted" id="authMessage"></p><button class="btn secondary hidden" id="logoutBtn">خروج از حساب</button></div></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL="PASTE_YOUR_SUPABASE_PROJECT_URL_HERE";
-const SUPABASE_ANON_KEY="PASTE_YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY_HERE";
+const SUPABASE_URL="https://vwawoyupncebmwhjxnve.supabase.co";
+const SUPABASE_ANON_KEY="sb_publishable_etk6om08ElELEj--2mlu5Q_mtsZ1nJN";
 let sb=null,user=null,profile=null,newsCache=[],remoteChat=false;
 if(window.supabase && SUPABASE_URL.startsWith("https://") && !SUPABASE_URL.includes("PASTE_") && !SUPABASE_ANON_KEY.includes("PASTE_")){sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY)}
 const $=id=>document.getElementById(id);
